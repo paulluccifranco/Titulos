@@ -36,44 +36,13 @@ public class TitulosController {
     public String titlesFile(@RequestParam MultipartFile file, HttpServletResponse response) throws IOException, JRException {
         InputStream inputStream =  new BufferedInputStream(file.getInputStream());
         List<Title> titles = excelReader.generateTitles(inputStream);
-        Title title = new Title();
-        response.setContentType("application/pdf");
-        response.setHeader("Cache-Control", "max-age=30");
-        response.setHeader("Pragma", "No-cache");
-        response.setDateHeader("Expires", 0);
-        List<String> srcFiles = Arrays.asList("test1.txt", "test2.txt");
-        FileOutputStream fos = new FileOutputStream("Titulos.zip");
-        ZipOutputStream zipOut = new ZipOutputStream(fos);
-        zipOut.close();
-        fos.close();
          for(Title tit : titles){
-            File fileToZip = new File(srcFile);
-            FileInputStream fis = new FileInputStream(fileToZip);
-            ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
-            zipOut.putNextEntry(zipEntry);
-
-            byte[] bytes = new byte[1024];
-            int length;
-            while((length = fis.read(bytes)) >= 0) {
-                zipOut.write(bytes, 0, length);
-            }
-            fis.close();
-             String fileName = tit.getName().replace(" ", "");
-             response.setHeader("Content-Disposition", "attachment; filename=\""+fileName+"\".pdf");
-             byte[] byteArray = pdfGenerator.generatorPDF(tit);
-
-             ByteArrayInputStream bais = new ByteArrayInputStream(byteArray);
-             OutputStream out = response.getOutputStream();
-
-             byte[] buf = new byte[1024];
-             int len;
-             while ((len = bais.read(buf)) > 0) {
-                 out.write(buf, 0, len);
+             String fileName = "PDFS/"+tit.getName().replace(" ", "").concat(".pdf");
+             File outputFile = new File(fileName);
+             try (FileOutputStream outputStream = new FileOutputStream(outputFile)) {
+                 outputStream.write(pdfGenerator.generatorPDF(tit));
              }
-             bais.close();
-             out.flush();
-             out.close();
-
+             break;
          }
 
         return "Titulos";

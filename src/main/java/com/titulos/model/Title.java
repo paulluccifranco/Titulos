@@ -6,9 +6,9 @@ import java.util.Date;
 public class Title {
     private String name;
     private String dni;
-    private String number;
-    private String book;
-    private String invoice;
+    private BigDecimal number;
+    private BigDecimal book;
+    private BigDecimal invoice;
     private BigDecimal cymat;
     private Date dateCymat;
     private BigDecimal sp1;
@@ -43,27 +43,27 @@ public class Title {
         this.dni = dni;
     }
 
-    public String getNumber() {
+    public BigDecimal getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(BigDecimal number) {
         this.number = number;
     }
 
-    public String getBook() {
+    public BigDecimal getBook() {
         return book;
     }
 
-    public void setBook(String book) {
+    public void setBook(BigDecimal book) {
         this.book = book;
     }
 
-    public String getInvoice() {
+    public BigDecimal getInvoice() {
         return invoice;
     }
 
-    public void setInvoice(String invoice) {
+    public void setInvoice(BigDecimal invoice) {
         this.invoice = invoice;
     }
 

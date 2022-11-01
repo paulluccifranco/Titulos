@@ -59,11 +59,11 @@ public class ExcelReader {
                 dniCell.setCellType(CellType.STRING);
                 title.setDni(dniCell.getStringCellValue());
                 numberCell.setCellType(CellType.STRING);
-                title.setNumber(numberCell.getStringCellValue());
+                title.setNumber(new BigDecimal(numberCell.getStringCellValue()));
                 bookCell.setCellType(CellType.STRING);
-                title.setBook(bookCell.getStringCellValue());
+                title.setBook(new BigDecimal(bookCell.getStringCellValue()));
                 invoiceCell.setCellType(CellType.STRING);
-                title.setInvoice(invoiceCell.getStringCellValue());
+                title.setInvoice(new BigDecimal(invoiceCell.getStringCellValue()));
                 title.setCymat(BigDecimal.valueOf(cymatCell.getNumericCellValue()).setScale(2, BigDecimal.ROUND_HALF_UP));
                 title.setDateCymat(dateCymatCell.getDateCellValue());
                 title.setSp1(BigDecimal.valueOf(sp1Cell.getNumericCellValue()).setScale(2, BigDecimal.ROUND_HALF_UP));

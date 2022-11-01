@@ -39,9 +39,9 @@ public class PdfGenerator {
         List<DynaBean> dynaBeans = new ArrayList<>();
         DynaBean beane = new LazyDynaBean();
         beane.set("principalText", principalText);
-        beane.set("number", title.getNumber());
-        beane.set("book", title.getBook());
-        beane.set("invoice", title.getInvoice());
+        beane.set("number", ""+title.getNumber().toBigInteger().intValueExact());
+        beane.set("book", ""+title.getBook().toBigInteger().intValueExact());
+        beane.set("invoice", ""+title.getInvoice().toBigInteger().intValueExact());
         beane.set("cymat", toNumber(title.getCymat()));
         beane.set("cymatLetters", toLetter(title.getCymat()));
         beane.set("dateCymat", simpleDateFormat.format(title.getDateCymat()));
