@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="Fragments.html :: head">
+	<title>Crear Adjunto</title>
+</head>
+<body>
+	<br />
+	<br />
+	<br />
+	<br />
+	<!-- === Header === -->
+	<header th:insert="Fragments.html :: header"> </header>
+	<!-- === End Header === -->
+	<!-- == Container== -->
+	<div class="alert alert-primary" role="alert" th:text="${message}" th:if="${message}"></div>
+	<div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+	<div class="container">
+		<br/>
+		<br/>
+		<br/>
+		<form class="form-horizontal" th:action="@{/guardaradjunto}" enctype="multipart/form-data" method="POST">
+			<p>
+				<label>Subir archivo :</label>
+				<input type="file" class="form-control" name="file" required>
+				<br>
+				<input type="submit" value="Enviar archivo"/>
+			</p>
+		</form>
+		<br>
+
+	</div><!-- === End Container === -->
+	<!-- === Footer === -->
+	<footer class="footer"> </footer>
+	<!-- === End Footer === -->
+</body>
+</html>
